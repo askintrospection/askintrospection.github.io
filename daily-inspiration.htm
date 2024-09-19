@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Inspiration - ASK Introspection</title>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --header-bg: #4a4a4a;
+            --header-text: #ffffff;
+            --nav-bg: #333333;
+            --nav-text: #ffffff;
+            --link-color: #0066cc;
+            --button-bg: #0066cc;
+            --button-text: #ffffff;
+        }
+        .dark-mode {
+            --bg-color: #1a1a1a;
+            --text-color: #ffffff;
+            --header-bg: #2c2c2c;
+            --nav-bg: #1c1c1c;
+            --link-color: #4d94ff;
+            --button-bg: #4d94ff;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        header {
+            background-color: var(--header-bg);
+            color: var(--header-text);
+            text-align: center;
+            padding: 1rem;
+        }
+        nav {
+            background-color: var(--nav-bg);
+            padding: 0.5rem;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 10px;
+            position: relative;
+        }
+        nav ul li a {
+            color: var(--nav-text);
+            text-decoration: none;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--nav-bg);
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            color: var(--nav-text);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        main {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .toggle-mode {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            padding: 5px 10px;
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        footer {
+            background-color: var(--nav-bg);
+            color: var(--nav-text);
+            text-align: center;
+            padding: 1rem;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        #quote-container {
+            background-color: rgba(0, 102, 204, 0.1);
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>ASK Introspection</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li class="dropdown">
+                <a href="javascript:void(0)" class="dropbtn">Mental Health</a>
+                <div class="dropdown-content">
+                    <a href="resources.html">Resources</a>
+                    <a href="coping-tips.html">Coping Tips</a>
+                    <a href="daily-inspiration.html">Daily Inspiration</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="javascript:void(0)" class="dropbtn">Games</a>
+                <div class="dropdown-content">
+                    <a href="mental-health-habits.html">Mental Health Habits Game</a>
+                    <a href="relaxation-game.html">Relaxation Game</a>
+                </div>
+            </li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+    <button class="toggle-mode" onclick="toggleMode()">Toggle Dark/Light Mode</button>
+    <main>
+        <section id="daily-inspiration">
+            <h2>Daily Inspiration</h2>
+            <p>Each day brings new opportunities for growth and self-discovery. Here's today's inspirational quote to brighten your day:</p>
+            <div id="quote-container">
+                <p id="quote"></p>
+                <p id="author"></p>
+            </div>
+            <button onclick="newQuote()">New Quote</button>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 ASK Introspection. Follow us on <a href="https://www.instagram.com/ask_introspection/" target="_blank">Instagram</a></p>
+    </footer>
+    <script>
+        function toggleMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        const quotes = [
+            { text: "The greatest glory in living lies not in never falling, but in rising every time we fall.", author: "Nelson Mandela" },
+            { text: "The way to get started is to quit talking and begin doing.", author: "Walt Disney" },
+            { text: "Your time is limited, don't waste it living someone else's life.", author: "Steve Jobs" },
+            { text: "If life were predictable it would cease to be life, and be without flavor.", author: "Eleanor Roosevelt" },
+            { text: "If you look at what you have in life, you'll always have more.", author: "Oprah Winfrey" }
+        ];
+
+        function newQuote() {
+            const quote = quotes[Math.floor(Math.random() * quotes.length)];
+            document.getElementById('quote').textContent = `"${quote.text}"`;
+            document.getElementById('author').textContent = `- ${quote.author}`;
+        }
+
+        // Load a quote when the page loads
+        window.onload = newQuote;
+    </script>
+</body>
+</html>
