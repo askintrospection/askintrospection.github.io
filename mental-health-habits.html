@@ -6,34 +6,34 @@
     <title>Mental Health Habits Game - ASK Introspection</title>
     <style>
         :root {
-            --bg-color: #ffffff;
+            --bg-color: #f0f4f8;
             --text-color: #333333;
-            --header-bg: #4a4a4a;
-            --header-text: #ffffff;
-            --nav-bg: #333333;
-            --nav-text: #ffffff;
-            --link-color: #0066cc;
-            --button-bg: #0066cc;
+            --header-bg: #2c3e50;
+            --header-text: #ecf0f1;
+            --nav-bg: #34495e;
+            --nav-text: #ecf0f1;
+            --link-color: #3498db;
+            --button-bg: #2980b9;
             --button-text: #ffffff;
             --box-bg: #ffffff;
-            --box-border: #cccccc;
+            --box-border: #bdc3c7;
             --habit-bg: #ffffff;
-            --habit-border: #dddddd;
+            --habit-border: #dde4e6;
         }
         .dark-mode {
-            --bg-color: #1a1a1a;
-            --text-color: #ffffff;
-            --header-bg: #2c2c2c;
-            --nav-bg: #1c1c1c;
-            --link-color: #4d94ff;
-            --button-bg: #4d94ff;
-            --box-bg: #333333;
-            --box-border: #555555;
-            --habit-bg: #333333;
-            --habit-border: #555555;
+            --bg-color: #2c3e50;
+            --text-color: #ecf0f1;
+            --header-bg: #1a252f;
+            --nav-bg: #2c3e50;
+            --link-color: #3498db;
+            --button-bg: #2980b9;
+            --box-bg: #34495e;
+            --box-border: #4a6178;
+            --habit-bg: #34495e;
+            --habit-border: #4a6178;
         }
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 0;
@@ -46,10 +46,12 @@
             color: var(--header-text);
             text-align: center;
             padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         nav {
             background-color: var(--nav-bg);
             padding: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         nav ul {
             list-style-type: none;
@@ -64,6 +66,12 @@
         nav ul li a {
             color: var(--nav-text);
             text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            transition: background-color 0.3s;
+        }
+        nav ul li a:hover {
+            background-color: rgba(255,255,255,0.1);
         }
         .dropdown-content {
             display: none;
@@ -72,6 +80,7 @@
             min-width: 160px;
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 1;
+            border-radius: 3px;
         }
         .dropdown-content a {
             color: var(--nav-text);
@@ -97,6 +106,10 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .toggle-mode:hover {
+            background-color: #3498db;
         }
         .container {
             display: flex;
@@ -113,6 +126,7 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             overflow-y: auto;
             background-color: var(--box-bg);
+            transition: background-color 0.3s, border-color 0.3s;
         }
         .box h3 {
             margin: 0;
@@ -134,6 +148,7 @@
             background-color: var(--habit-bg);
             cursor: pointer;
             text-align: center;
+            transition: background-color 0.3s, border-color 0.3s;
         }
         .submit-btn, .replay-btn, .reset-btn {
             display: inline-block;
@@ -145,14 +160,18 @@
             color: var(--button-text);
             cursor: pointer;
             font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .submit-btn:hover, .replay-btn:hover, .reset-btn:hover {
+            background-color: #3498db;
         }
         .correct {
-            color: #4CAF50;
+            color: #27ae60;
             font-weight: bold;
             text-align: center;
         }
         .incorrect {
-            color: #F44336;
+            color: #e74c3c;
             font-weight: bold;
             text-align: center;
         }
@@ -164,6 +183,7 @@
             position: relative;
             bottom: 0;
             width: 100%;
+            box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
         }
     </style>
     <script>
@@ -180,7 +200,6 @@
     <nav>
         <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About Us</a></li>
             <li class="dropdown">
                 <a href="javascript:void(0)" class="dropbtn">Mental Health</a>
                 <div class="dropdown-content">
@@ -197,6 +216,7 @@
                 </div>
             </li>
             <li><a href="contact.html">Contact</a></li>
+            <li><a href="about.html">About Us</a></li>
         </ul>
     </nav>
     <button class="toggle-mode" onclick="toggleMode()">Toggle Dark/Light Mode</button>
