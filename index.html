@@ -1,1 +1,154 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASK Introspection</title>
+    <style>
+        :root {
+            --bg-color: #f0f4f8;
+            --text-color: #333333;
+            --header-bg: #2c3e50;
+            --header-text: #ecf0f1;
+            --nav-bg: #34495e;
+            --nav-text: #ecf0f1;
+            --link-color: #3498db;
+            --button-bg: #2980b9;
+            --button-text: #ffffff;
+            --box-bg: #ffffff;
+            --box-border: #bdc3c7;
+            --habit-bg: #ffffff;
+            --habit-border: #dde4e6;
+        }
+        .dark-mode {
+            --bg-color: #2c3e50;
+            --text-color: #ecf0f1;
+            --header-bg: #1a252f;
+            --nav-bg: #2c3e50;
+            --link-color: #3498db;
+            --button-bg: #2980b9;
+            --box-bg: #34495e;
+            --box-border: #4a6178;
+            --habit-bg: #34495e;
+            --habit-border: #4a6178;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        header {
+            background-color: var(--header-bg);
+            color: var(--header-text);
+            text-align: center;
+            padding: 1rem;
+        }
+        nav {
+            background-color: var(--nav-bg);
+            padding: 0.5rem;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 10px;
+            position: relative;
+        }
+        nav ul li a {
+            color: var(--nav-text);
+            text-decoration: none;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--nav-bg);
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            color: var(--nav-text);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        main {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .toggle-mode {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            padding: 5px 10px;
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        footer {
+            background-color: var(--nav-bg);
+            color: var(--nav-text);
+            text-align: center;
+            padding: 1rem;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>ASK Introspection</h1>
+    </header>
+    <nav>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">Mental Health</a>
+            <div class="dropdown-content">
+                <a href="resources.html">Resources</a>
+                <a href="coping-tips.html">Coping Tips</a>
+                <a href="daily-inspiration.html">Daily Inspiration</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">Games</a>
+            <div class="dropdown-content">
+                <a href="mental-health-habits.html">Mental Health Habits Game</a>
+                <a href="relaxation-game.html">Relaxation Game</a>
+            </div>
+        </li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="about.html">About Us</a></li>
+    </ul>
+    </nav>
+    <button class="toggle-mode" onclick="toggleMode()">Toggle Dark/Light Mode</button>
+    <main>
+        <section id="home">
+            <h2>Welcome to ASK Introspection</h2>
+            <p>We're here to support your mental health journey. Our page offers daily inspiration, coping tips, and a judgment-free community. Whether you're struggling or just looking to improve your well-being, you've found a safe space. Let's break the stigma and promote mental wellness together.</p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 ASK Introspection. Follow us on <a href="https://www.instagram.com/ask_introspection/" target="_blank">Instagram</a></p>
+    </footer>
+    <script>
+        function toggleMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+    </script>
+</body>
+</html>
