@@ -6,98 +6,31 @@
     <title>Contact - ASK Introspection</title>
     <style>
         :root {
-            --bg-color: #ffffff;
+            --bg-color: #f0f4f8;
             --text-color: #333333;
-            --header-bg: #4a4a4a;
-            --header-text: #ffffff;
-            --nav-bg: #333333;
-            --nav-text: #ffffff;
-            --link-color: #0066cc;
-            --button-bg: #0066cc;
+            --header-bg: #2c3e50;
+            --header-text: #ecf0f1;
+            --nav-bg: #34495e;
+            --nav-text: #ecf0f1;
+            --link-color: #3498db;
+            --button-bg: #2980b9;
             --button-text: #ffffff;
+            --box-bg: #ffffff;
+            --box-border: #bdc3c7;
+            --habit-bg: #ffffff;
+            --habit-border: #dde4e6;
         }
         .dark-mode {
-            --bg-color: #1a1a1a;
-            --text-color: #ffffff;
-            --header-bg: #2c2c2c;
-            --nav-bg: #1c1c1c;
-            --link-color: #4d94ff;
-            --button-bg: #4d94ff;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            transition: background-color 0.3s, color 0.3s;
-        }
-        header {
-            background-color: var(--header-bg);
-            color: var(--header-text);
-            text-align: center;
-            padding: 1rem;
-        }
-        nav {
-            background-color: var(--nav-bg);
-            padding: 0.5rem;
-        }
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-        }
-        nav ul li {
-            margin: 0 10px;
-            position: relative;
-        }
-        nav ul li a {
-            color: var(--nav-text);
-            text-decoration: none;
-        }
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: var(--nav-bg);
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
-        }
-        .dropdown-content a {
-            color: var(--nav-text);
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-        }
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-        main {
-            padding: 20px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        .toggle-mode {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            padding: 5px 10px;
-            background-color: var(--button-bg);
-            color: var(--button-text);
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        footer {
-            background-color: var(--nav-bg);
-            color: var(--nav-text);
-            text-align: center;
-            padding: 1rem;
-            position: relative;
-            bottom: 0;
-            width: 100%;
+            --bg-color: #2c3e50;
+            --text-color: #ecf0f1;
+            --header-bg: #1a252f;
+            --nav-bg: #2c3e50;
+            --link-color: #3498db;
+            --button-bg: #2980b9;
+            --box-bg: #34495e;
+            --box-border: #4a6178;
+            --habit-bg: #34495e;
+            --habit-border: #4a6178;
         }
         form {
             max-width: 500px;
@@ -110,18 +43,31 @@
         }
         input, textarea {
             padding: 5px;
-            border: 1px solid #ccc;
+            border: 1px solid var(--box-border);
             border-radius: 4px;
+            background-color: var(--box-bg);
+            color: var(--text-color);
         }
-        button {
+        button[type="submit"] {
             background-color: var(--button-bg);
             color: var(--button-text);
             padding: 10px 20px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        button[type="submit"]:hover {
+            background-color: #3498db;
         }
     </style>
+    <script>
+        // Check for user's preference in localStorage
+        if (localStorage.getItem('darkMode') === null) {
+            localStorage.setItem('darkMode', 'enabled');
+        }
+    </script>
 </head>
 <body class="dark-mode">
     <header>
@@ -130,7 +76,6 @@
     <nav>
         <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About Us</a></li>
             <li class="dropdown">
                 <a href="javascript:void(0)" class="dropbtn">Mental Health</a>
                 <div class="dropdown-content">
@@ -147,12 +92,13 @@
                 </div>
             </li>
             <li><a href="contact.html">Contact</a></li>
+            <li><a href="about.html">About Us</a></li>
         </ul>
     </nav>
     <button class="toggle-mode" onclick="toggleMode()">Toggle Dark/Light Mode</button>
     <main>
         <h2>Contact Us</h2>
-        <form id="contactForm">
+        <form id="contactForm" onsubmit="return sendEmail()">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>
 
@@ -171,13 +117,28 @@
     <script>
         function toggleMode() {
             document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                localStorage.setItem('darkMode', 'disabled');
+            }
         }
 
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your message. We will get back to you soon!');
-            this.reset();
-        });
+        // Apply user's preference on page load
+        if (localStorage.getItem('darkMode') === 'disabled') {
+            document.body.classList.remove('dark-mode');
+        }
+
+        function sendEmail() {
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var message = document.getElementById('message').value;
+            var mailtoLink = 'mailto:your-email@example.com'
+                + '?subject=' + encodeURIComponent('Contact from ASK Introspection')
+                + '&body=' + encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\nMessage: ' + message);
+            window.location.href = mailtoLink;
+            return false;
+        }
     </script>
 </body>
 </html>
